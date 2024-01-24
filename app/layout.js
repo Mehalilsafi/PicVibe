@@ -1,5 +1,10 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+//font awosom import 
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
+//// end f it 
 import PrelineScript from "./components/PrelineScript";
 
 
