@@ -8,7 +8,7 @@ import {
   } from "@fortawesome/free-solid-svg-icons";
 export default function liked() {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [isLiked,setIsLiked] =useState(false)
+    const [isLiked,setIsLiked] =useState(true)
     function handlleFav(){
       setIsLiked((prev)=>{
           return !isLiked  

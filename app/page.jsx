@@ -6,15 +6,15 @@ import Hero  from "./components/Hero";
 export default function Home() {
   return (
    <div>
-    <Nav/>
+  
     <div className="grid grid-cols-5 gap-4 mx-auto px-4 mt-5">
-  <div className="col-span-1" style={{ minWidth: '20%' }}>
+    <div className="col-span-1" style={{ minWidth: '20%' }}>
     <SideBar />
-  </div>
+    </div>
   <div className="col-span-4" style={{ minWidth: '80%' }}>
-    <Hero />
-  </div>
-</div>
+     <Hero />
+   </div>
+   </div>
 
 
    </div>
