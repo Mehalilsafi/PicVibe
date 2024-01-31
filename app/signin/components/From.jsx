@@ -6,6 +6,8 @@ import InputForm from './InputForm';
 export default function Form() {
   const [isNewUser, setIsNewUser] = useState(false);
   const [isSignIn, setIsSignIn] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
+
   let signInMessage = 'Sign In';
   if (isSignIn){
       signInMessage = 'Signing In'
@@ -20,6 +22,8 @@ export default function Form() {
   function handleSignIn() {
     setIsSignIn((prev) => !prev);
   }
+  
+  const signUpMessage= <p> Email sent ! check your email </p>
 
   return (
     <div>
@@ -84,7 +88,10 @@ export default function Form() {
             </div>
 
             {/* Start of input form */}
+
             <InputForm />
+
+            
             {/* End of input form */}
 
             {/* Checkbox */}
@@ -119,6 +126,8 @@ export default function Form() {
               >
                 {signInMessage}
               </button>
+
+              {isSignUp && signUpMessage}
             </div>
           </div>
         </div>

@@ -1,12 +1,24 @@
 'use client'
 import React, { useState } from 'react'
-
+import SignUp from "../actions/singup"
 export default function InputForm() {
    const [FomrData,setFormData]=useState({
     userName:"",
     email:"",
     password:""
    })
+
+   function handleSingup(e){
+    e.preventDefault();
+    SignUp(FormData)
+   }
+   function handleSignIn(e){
+    e.preventDefault();
+   }
+   
+
+
+
   function handleChange(e){
   setFormData((prev)=>{
     return {...prev , 
@@ -18,7 +30,7 @@ export default function InputForm() {
 
   return (
     <div className="flex flex-col gap-2.5 ">
-    <form action="">
+    <form action={SignUp}>
     <label
      for="input-label" 
     class="block text-sm font-medium mb-2 dark:text-white" >UserName</label>
