@@ -18,9 +18,9 @@ export default function Form() {
               <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 "
            
               >
-              dont have an account ?
+              Already  have an account ?
 
-                <Link href='./signup' className='"text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600'> singup in here </Link>
+                <Link href='./signin' className='"text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600'> singin  here </Link>
               </p>       
           </div>
 
@@ -43,7 +43,7 @@ export default function Form() {
             {/* Start of input form */}
 
             <InputForm 
-  
+
             />
 
 
@@ -77,7 +77,7 @@ export default function Form() {
               <button
                 className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"                
               >
-                singin
+                singup
               </button> 
             </div>
           </div>
@@ -88,4 +88,3 @@ export default function Form() {
     </div>
   );
 }
-
