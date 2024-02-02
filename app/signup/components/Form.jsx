@@ -49,37 +49,9 @@ export default function Form() {
 
             {/* End of input form */}
 
-            {/* Checkbox */}
-            <div className="mt-5 flex items-center">
-              <div className="flex">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 pointer-events-none focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                />
-              </div>
-              <div className="ms-3">
-                <label htmlFor="remember-me" className="text-sm dark:text-white">
-                  I accept the{' '}
-                  <a
-                    className="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                    href="#"
-                  >
-                    Terms and Conditions
-                  </a>
-                </label>
-              </div>
-            </div>
-            {/* End Checkbox */}
+          
 
-            <div className="mt-5">
-              <button
-                className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"                
-              >
-                singup
-              </button> 
-            </div>
+          
           </div>
         </div>
         {/* End Card */}

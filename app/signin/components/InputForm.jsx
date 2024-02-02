@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-
+import {signInWithEmail} from '../actions/signin'
 export default  function InputForm() {
    const [FomrData,setFormData]=useState({
     userName:"",
@@ -11,6 +11,7 @@ export default  function InputForm() {
   
    function handleSignIn(e){
     e.preventDefault();
+    signInWithEmail(FormData)
    }
    
 
@@ -27,7 +28,7 @@ export default  function InputForm() {
 
   return (
     <div className="flex flex-col gap-2.5 ">
-    <form action="">
+    <form  onSubmit={handleSignIn}>
     <label
      for="input-label" 
     class="block text-sm font-medium mb-2 dark:text-white" >UserName</label>
@@ -59,7 +60,13 @@ export default  function InputForm() {
       name='password'
       onChange={handleChange}
       value={FomrData.password}/> 
-      
+       <div className="mt-5">
+              <button
+                className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"                
+              >
+                singin
+              </button> 
+            </div>
 
     </form>
     </div>
