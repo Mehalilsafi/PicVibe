@@ -1,8 +1,20 @@
 import React from 'react'
 import Link from 'next/link'
-
-
+import { createSupabaseServerClient } from "@/utils/supabase/actions";
+import { redirect } from 'next/navigation';
 export default function SideBar() {
+
+
+  const logout=async ()=>{
+    "use server"
+      const supabase= await createSupabaseServerClient()
+      const { error } = await supabase.auth.signOut()
+     if(error){
+     console.log("sing out error is here : "+error)
+     }
+     redirect("/signin")
+    
+}
   return (
     <div className='flex  justify-start flex-col gap-6 '> 
      <button type="button" className="py-3 px-4  w-[150px] inline-flex items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" data-hs-overlay="#hs-focus-management-modal">
@@ -59,6 +71,13 @@ export default function SideBar() {
     <li className='text-gray-500 hover:text-blue-500'>Friendes</li>
     <li className='text-gray-500 hover:text-blue-500'>Settings</li>
    </ul>
+
+   <form action={logout} >
+      <button className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700" >
+      signout
+      </button>
+      </form>
+
 
     </div>
   )

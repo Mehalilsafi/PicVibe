@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import {signInWithEmail} from '../actions/signin'
 export default  function InputForm() {
-   const [FomrData,setFormData]=useState({
+   const [FormData,setFormData]=useState({
     userName:"",
     email:"",
     password:""
@@ -38,7 +38,7 @@ export default  function InputForm() {
        placeholder="Enter user name"
        name='userName'
        onChange={handleChange}
-       value={FomrData.userName}
+       value={FormData.userName}
        />
 
     <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Email</label>
@@ -48,7 +48,7 @@ export default  function InputForm() {
        placeholder="you@site.com"
        name='email'
        onChange={handleChange}
-       value={FomrData.email}
+       value={FormData.email}
        /> 
     
      
@@ -59,7 +59,7 @@ export default  function InputForm() {
       placeholder="Enter password"
       name='password'
       onChange={handleChange}
-      value={FomrData.password}/> 
+      value={FormData.password}/> 
        <div className="mt-5">
               <button
                 className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"                

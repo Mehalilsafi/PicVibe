@@ -5,9 +5,9 @@ import Hero  from "./components/Hero";
 import { redirect } from 'next/navigation';
 import {readUser} from "@/utils/supabase/readUser"
 export default async function Home() {
-     const {data:{user}} = await readUser()
-     if (!user){
-      redirect('/signup')
+     const {data} = await readUser()
+     if (!data.session){
+      redirect('/signin')
      }
   return (
    <div>
