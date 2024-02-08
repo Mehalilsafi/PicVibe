@@ -2,12 +2,37 @@
 import { useState } from 'react'
 
 import React from 'react'
+//import { createSupabaseServerClient } from "@/utils/supabase/actions";
+import { supabase } from '@/utils/supabase/client'
 
-export default function PhotoUploed() {
+export default  function PhotoUploed() {
+
    const [uploade,setUpload]=useState(false)
-   function handleFileUpload(){
-    setUpload(true);
-   }
+
+   
+   async function handleFileUpload(event){
+    
+    try{
+
+        setUpload((prev)=>!prev);
+        const file = event.target.files[0]
+        const fileExt=file.name.split('.').pop()
+        const fileName=`${Math.random()}.${fileExt}`
+        const {data:{user}}=await supabase.auth.getUser()
+        if(!user){
+            throw new Error("User nt auhtenticated for photo upload")
+        }
+        const filePath = `user_uploads/${user.id}/${fileName}`
+        const {error} = await supabase.storage.from('photos')
+        .upload(filePath, file)
+
+    if (error){
+        throw error
+    }
+    }catch(err){
+        console.log(err)
+    }
+    }
    
 
   return (
