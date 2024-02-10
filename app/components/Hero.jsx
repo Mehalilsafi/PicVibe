@@ -22,18 +22,28 @@ async function getPhotoUrls(photos, user, supabase){
 
 ///////////////////////////////////////////////////////////
 
-async function fetchUserPhotos(user,supabase){
+async function fetchUserPhotos(user, supabase) {
   if (!user) return;
-  const filePath=`user_uploads/${user.id} /`
-  const {data,error}=  await supabase.storage
-  .from('photos' 
-  .list(filePath))
-  if(error){
-    console.error('erro fetching photose')
-    return
+
+  const filePath = `user_uploads/${user.id}/`;
+  
+  try {
+      const { data, error } = await supabase.storage
+          .from('photos')
+          .list(filePath);
+
+      if (error) {
+          console.error('Error fetching photos:', error.message);
+          return null;
+      }
+
+      return data;
+  } catch (error) {
+      console.error('Error fetching photos:', error.message);
+      return null;
+  }
 }
-return data
-}
+
 //////////////////////////////////////////////////////////
 export default  async function Hero() {
 
