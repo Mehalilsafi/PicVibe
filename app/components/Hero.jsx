@@ -1,18 +1,50 @@
-'use client'
 
-import { useState } from 'react'
 import React from 'react'
 import DropDown from './DropDown'
 import Image from 'next/image'
 import Nature from '@/assets/nature.jpg'
-import Liked from './liked'
+//import Liked from './liked'
+import { createSupabaseServerClient } from "@/utils/supabase/actions";
 
 
+async function getPhotoUrls(photos, user, supabase){
+  return Promise.all(photos.map(async (photo) => {
+      const {data, error} = await supabase.storage
+          .from('photos')
+          .createSignedUrl(`user_uploads/${user.id}/${photo.name}`, 60 * 60)
+      if (error){
+          console.error('Error generating signed url', error)
+          return null
+      }
+      return {url: data.signedUrl, photoName: photo.name}
+  }))
+}
+
+///////////////////////////////////////////////////////////
+
+async function fetchUserPhotos(user,supabase){
+  if (!user) return;
+  const filePath=`user_uploads/${user.id} /`
+  const {data,error}=  await supabase.storage
+  .from('photos' 
+  .list(filePath))
+  if(error){
+    console.error('erro fetching photose')
+    return
+}
+return data
+}
+//////////////////////////////////////////////////////////
+export default  async function Hero() {
+
+ const supabase=await createSupabaseServerClient() 
+ const {data:{user}}= await supabase.auth.getUser()
+ const photos=await fetchUserPhotos(user,supabase)
+ console.log('is here '+photos)
+ const photoObjects = await getPhotoUrls(photos, user, supabase);
 
 
-export default function Hero() {
-
- const fakeTable=[1,2,3,4,5,6,7,8,9,10]
+ const fakeTable=[1,2,3,4,5,6,7,8,9,10]  
 
 
   return (
@@ -42,7 +74,7 @@ export default function Hero() {
               Some quick 
             </p>  
             <div className='flex items-center justify-between'>
-            <Liked/>                              
+                           
          
             <button type="button" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-500 text-white hover:bg-red-600 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
               Delete 

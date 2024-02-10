@@ -8,8 +8,6 @@ import { supabase } from '@/utils/supabase/client'
 export default  function PhotoUploed() {
 
    const [uploade,setUpload]=useState(false)
-
-   
    async function handleFileUpload(event){
     
     try{

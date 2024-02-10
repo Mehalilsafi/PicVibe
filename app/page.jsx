@@ -20,8 +20,6 @@ export default async function Home() {
      <Hero />
    </div>
    </div>
-
-
    </div>
   );
 }
