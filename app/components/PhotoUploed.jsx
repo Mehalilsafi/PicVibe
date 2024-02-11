@@ -6,8 +6,24 @@ import React from 'react'
 import { supabase } from '@/utils/supabase/client'
 
 export default  function PhotoUploed() {
+   const [formData,setFormData]=useState({
+    title:"",
+    description:""
 
+   })
    const [uploade,setUpload]=useState(false)
+   function handleChange(event){
+
+    setFormData((prev)=>{
+      return {...prev,
+        [event.target.name]:event.target.value
+      }
+    })
+
+   }
+  
+
+
    async function handleFileUpload(event){
     
     try{
@@ -16,7 +32,7 @@ export default  function PhotoUploed() {
         const file = event.target.files[0]
         console.log(file+'safi')
         const fileExt=file.name.split('.').pop()
-        const fileName=`${Math.random()}.${fileExt}`
+        const fileName=`${formData.title}.${fileExt}`
         const {data:{user}}=await supabase.auth.getUser()
         if(!user){
             throw new Error("User nt auhtenticated for photo upload")
@@ -55,8 +71,29 @@ export default  function PhotoUploed() {
 
 
       <div className="p-4 overflow-y-auto flex flex-col gap-5">
-      <input type="text" className="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600 border border-solid border-slate-300 " placeholder="Enter Image Title"/>
-      <input type="text" className="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600  border border-solid border-slate-300 " placeholder="Enter Image Description"/>
+
+
+      <form action="">
+      <input 
+      type="text"
+       className="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600 border border-solid border-slate-300 " 
+       placeholder="Enter Image Title"
+       onChange={handleChange}
+       value={FormData.title}
+       name='title'
+       />
+
+      <input
+       type="text" 
+      className="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600  border border-solid border-slate-300 "
+       placeholder="Enter Image Description"
+       onChange={handleChange}
+       value={FormData.description}
+       name='description'
+       
+       
+       />
+       
 
       <label
          htmlFor="photo-upload"
@@ -74,6 +111,7 @@ export default  function PhotoUploed() {
 
 
  
+      </form>
 
 
 
