@@ -38,8 +38,11 @@ export default  function PhotoUploed() {
             throw new Error("User nt auhtenticated for photo upload")
         }
         const filePath = `user_uploads/${user.id}/${fileName}`
+        const metadata = {
+          description: formData.description // Include description in metadata
+      };
         const {error} = await supabase.storage.from('photos')
-        .upload(filePath, file)
+        .upload(filePath, file, { metadata })
 
     if (error){
         throw error
