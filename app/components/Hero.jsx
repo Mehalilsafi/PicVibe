@@ -7,18 +7,28 @@ import Nature from '@/assets/nature.jpg'
 import { createSupabaseServerClient } from "@/utils/supabase/actions";
 
 
-async function getPhotoUrls(photos, user, supabase){
-  return Promise.all(photos.map(async (photo) => {
-      const {data, error} = await supabase.storage
-          .from('photos')
-          .createSignedUrl(`user_uploads/${user.id}/${photo.name}`, 60 * 60)
-      if (error){
-          console.error('Error generating signed url', error)
-          return null
-      }
-      return {url: data.signedUrl, photoName: photo.name}
-  }))
+async function getPhotoUrls(photos, user, supabase) {
+  try {
+      const photoPromises = photos.map(async (photo) => {
+          const { data, error } = await supabase.storage
+              .from('photos')
+              .createSignedUrl(`user_uploads/${user.id}/${photo.name}`, 60 * 60);
+          if (error) {
+              console.error('Error generating signed URL:', error);
+              return null;
+          }
+          return { url: data.signedUrl, photoName: photo.name };
+      });
+
+      const photoObjects = await Promise.all(photoPromises);
+      console.log('Generated photo URLs:', photoObjects);
+      return photoObjects;
+  } catch (error) {
+      console.error('Error in getPhotoUrls:', error);
+      throw error;
+  }
 }
+
 
 ///////////////////////////////////////////////////////////
 
@@ -52,10 +62,7 @@ export default  async function Hero() {
  const photos=await fetchUserPhotos(user,supabase)
  console.log('is here '+photos)
  const photoObjects = await getPhotoUrls(photos, user, supabase);
-
-
- const fakeTable=[1,2,3,4,5,6,7,8,9,10]  
-
+ console.log('is here '+photoObjects)
 
   return (
     <div>
@@ -67,10 +74,10 @@ export default  async function Hero() {
   <div className='grid grid-cols-3 gap-4 mt-5'>
 
    {
-       fakeTable.map((el) => (
-        <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]" key={el}>
+       photoObjects.map((photo) => (
+        <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]" key={photo.name}>
           <Image
-            src={Nature}
+            src={photo.url}
             width={500}
             height={500}
             alt="Picture of the author"

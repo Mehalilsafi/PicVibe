@@ -14,6 +14,7 @@ export default  function PhotoUploed() {
 
         setUpload((prev)=>!prev);
         const file = event.target.files[0]
+        console.log(file+'safi')
         const fileExt=file.name.split('.').pop()
         const fileName=`${Math.random()}.${fileExt}`
         const {data:{user}}=await supabase.auth.getUser()
