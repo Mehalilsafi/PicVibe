@@ -55,6 +55,12 @@ async function fetchUserPhotos(user, supabase) {
 }
 
 //////////////////////////////////////////////////////////
+
+
+
+
+
+
 export default  async function Hero() {
 
  const supabase=await createSupabaseServerClient() 

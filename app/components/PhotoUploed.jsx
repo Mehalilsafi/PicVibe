@@ -76,7 +76,7 @@ export default  function PhotoUploed() {
       <div className="p-4 overflow-y-auto flex flex-col gap-5">
 
 
-      <form action="">
+     
       <input 
       type="text"
        className="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600 border border-solid border-slate-300 " 
@@ -114,7 +114,7 @@ export default  function PhotoUploed() {
 
 
  
-      </form>
+   
 
 
 

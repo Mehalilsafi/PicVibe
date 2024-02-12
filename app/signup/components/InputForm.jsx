@@ -10,7 +10,7 @@ export default  function InputForm() {
    const [isSingup,setSingup]=useState(false)
   
    async function handleSignUp(e){
-    e.preventDefault();
+     e.preventDefault();
      signUpNewUser(FormData)
        
    }
