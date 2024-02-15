@@ -6,7 +6,7 @@ import React from 'react'
 import { supabase } from '@/utils/supabase/client'
 
 export default  function PhotoUploed() {
-   const [formData,setFormData]=useState({
+    const [formData,setFormData]=useState({
     title:"",
     description:""
 
@@ -49,7 +49,7 @@ export default  function PhotoUploed() {
     }
     }catch(err){
         console.log(err)
-    }
+    }  
     }
    
 
