@@ -1,73 +1,22 @@
 
-import React from 'react'
+import React, { useContext } from 'react'
 import DropDown from './DropDown'
 import Image from 'next/image'
 import Nature from '@/assets/nature.jpg'
 //import Liked from './liked'
 import { createSupabaseServerClient } from "@/utils/supabase/actions";
-
-
-async function getPhotoUrls(photos, user, supabase) {
-  try {
-      const photoPromises = photos.map(async (photo) => {
-          const { data, error } = await supabase.storage
-              .from('photos')
-              .createSignedUrl(`user_uploads/${user.id}/${photo.name}`, 60 * 60);
-          if (error) {
-              console.error('Error generating signed URL:', error);
-              return null;
-          }
-          return { url: data.signedUrl, photoName: photo.name };
-      });
-
-      const photoObjects = await Promise.all(photoPromises);
-      console.log('Generated photo URLs:', photoObjects);
-      return photoObjects;
-  } catch (error) {
-      console.error('Error in getPhotoUrls:', error);
-      throw error;
-  }
-}
-
-
-///////////////////////////////////////////////////////////
-
-async function fetchUserPhotos(user, supabase) {
-  if (!user) return;
-
-  const filePath = `user_uploads/${user.id}/`;
-  
-  try {
-      const { data, error } = await supabase.storage
-          .from('photos')
-          .list(filePath);
-
-      if (error) {
-          console.error('Error fetching photos:', error.message);
-          return null;
-      }
-
-      return data;
-  } catch (error) {
-      console.error('Error fetching photos:', error.message);
-      return null;
-  }
-}
-
-//////////////////////////////////////////////////////////
-
-
-
-
+import PostContext from '../context/postContext';
+import getPhotoUrls from '../actions/getPhotoUrl';
+import fetchUserPhotos from '../actions/fetchUserPhotos'
 
 
 export default  async function Hero() {
-
+ const {post}=useContext(PostContext)
  const supabase=await createSupabaseServerClient() 
  const {data:{user}}= await supabase.auth.getUser()
- const photos=await fetchUserPhotos(user,supabase)
+ const photos=await fetchUserPhotos(user)
  console.log('is here '+photos)
- const photoObjects = await getPhotoUrls(photos, user, supabase);
+ const photoObjects = await getPhotoUrls(photos, user);
  console.log('is here '+photoObjects)
 
   return (

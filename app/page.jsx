@@ -4,13 +4,15 @@ import SideBar from "./components/SideBar";
 import Hero  from "./components/Hero";
 import { redirect } from 'next/navigation';
 import {readUser} from "@/utils/supabase/readUser"
+import PostContextProvider from "./context/postContextProvider";
+
 export default async function Home() {
      const {data} = await readUser()
      if (!data.session){
       redirect('/signin')
      }
   return (
-   <div>
+   <PostContextProvider>
   
     <div className="grid grid-cols-5 gap-4 mx-auto px-4 mt-5">
     <div className="col-span-1" style={{ minWidth: '20%' }}>
@@ -20,6 +22,6 @@ export default async function Home() {
      <Hero />
    </div>
    </div>
-   </div>
+   </PostContextProvider>
   );
 }

@@ -1,10 +1,11 @@
+'use client'
+
 import React ,{useState } from 'react'
 import PostContext  from './postContext'
-
 const PostContextProvider=({children})=>{
-    const [post,setPost]=useState(null)
+    const [post,setPost]=  useState(null)
     return(
-        <PostContext.Provider>
+        <PostContext.Provider value={{post,setPost}}>
             {children}
         </PostContext.Provider>
     )
