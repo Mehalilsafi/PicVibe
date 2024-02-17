@@ -1,5 +1,5 @@
 'use client'
-import React, { useContext ,useState} from 'react'
+import React, { useContext ,useState,useEffect} from 'react'
 import DropDown from './DropDown'
 import Image from 'next/image'
 import Liked from './Liked'
@@ -12,22 +12,20 @@ export default function Hero({src,alt, width, height, photoName}) {
   function toggleModal(){
       setShowModal(!showModal)
   }
-
+  useEffect(() => {
+    console.log(src + ' photo URL is here');
+  }, [src]); // Execute the effect whenever `src` changes
  //const deletePostWithArgument = deletePost.bind(null,user,photoObjects)
   return (
     <div>
-    <DropDown/>
-    <div className='flex justify-between mt-4 '>
-    <h2>photgraphy trip to Annaba </h2>
-    <p className=' text-gray-500 dark:text-gray-400'>43 photo </p>
-    </div>
+    
   <div className='grid grid-cols-3 gap-4 mt-5'>
         <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]" >
           <Image
             src={src}
-            width={500}
-            height={500}
-            alt="Picture of the author"
+            width={width}
+            height={height}
+            alt={alt}
             onClick={() => setShowModal(true)}
           />
       

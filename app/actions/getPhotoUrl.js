@@ -1,10 +1,10 @@
 'use server '
 import React from 'react'
 import { createSupabaseServerClient } from "@/utils/supabase/actions";
-import { revalidatePath } from 'next/cache';
+//import { revalidatePath } from 'next/cache';
 
 
-   async function getPhotoUrls(photos, user,postId) {
+   async function getPhotoUrls(photos, user) {
 
     const supabase=await createSupabaseServerClient() 
     try {
@@ -16,7 +16,7 @@ import { revalidatePath } from 'next/cache';
                 console.error('Error generating signed URL:', error);
                 return null;
             }
-            return { url: data.signedUrl, photoName: photo.name, key: photo.name,userId:user.id,postId };
+            return { url: data.signedUrl, photoName: photo.name, key: photo.name,userId:user.id};
         });
 
 
@@ -26,7 +26,7 @@ import { revalidatePath } from 'next/cache';
         console.log(photoObjects+'photoObjects what he console ')
 
         console.log('Generated photo URLs:', photoObjects);
-         revalidatePath('/')
+       
         return photoObjects;
     } catch (error) {
         console.error('Error in getPhotoUrls:', error);

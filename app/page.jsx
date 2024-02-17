@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Nav from "./components/Nav";
 import SideBar from "./components/SideBar";
-import Hero  from "./components/Hero";
+import Photo  from "./components/photo";
 import { redirect } from 'next/navigation';
 import {readUser} from "@/utils/supabase/readUser"
 import PostContextProvider from "./context/postContextProvider";
@@ -19,7 +19,7 @@ export default async function Home() {
     <SideBar />
     </div>
   <div className="col-span-4" style={{ minWidth: '80%' }}>
-     <Hero />
+     <Photo />
    </div>
    </div>
    </PostContextProvider>
