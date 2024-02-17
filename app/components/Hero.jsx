@@ -1,4 +1,4 @@
-
+'use client '
 import React, { useContext } from 'react'
 import DropDown from './DropDown'
 import Image from 'next/image'
@@ -8,16 +8,17 @@ import { createSupabaseServerClient } from "@/utils/supabase/actions";
 import PostContext from '../context/postContext';
 import getPhotoUrls from '../actions/getPhotoUrl';
 import fetchUserPhotos from '../actions/fetchUserPhotos'
-
+import addPost from '../actions/addPost'
 
 export default  async function Hero() {
- const {post}=useContext(PostContext)
+ const post=useContext(PostContext)
+ console.log('post log is here '+post)
  const supabase=await createSupabaseServerClient() 
  const {data:{user}}= await supabase.auth.getUser()
  const photos=await fetchUserPhotos(user)
- console.log('is here '+photos)
+ console.log('phootos frm fetch use function what retutn : '+photos)
  const photoObjects = await getPhotoUrls(photos, user);
- console.log('is here '+photoObjects)
+ console.log('photot object what return  :'+photoObjects)
 
   return (
     <div>

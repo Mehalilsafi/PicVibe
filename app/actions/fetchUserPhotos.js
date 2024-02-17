@@ -25,3 +25,5 @@ import { createSupabaseServerClient } from "@/utils/supabase/actions";
         return null;
     }
   }
+
+  export default fetchUserPhotos

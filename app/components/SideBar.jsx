@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { createSupabaseServerClient } from "@/utils/supabase/actions";
 import { redirect } from 'next/navigation';
 import PhotoUploed from './PhotoUploed';
+import PostContextProvider from '../context/postContextProvider';
 export default function SideBar() {
 
 
@@ -17,6 +18,8 @@ export default function SideBar() {
     
 }
   return (
+    <PostContextProvider>
+
     <div className='flex  justify-start flex-col gap-6 '> 
     
 
@@ -40,5 +43,6 @@ export default function SideBar() {
 
 
     </div>
+    </PostContextProvider>
   )
 }

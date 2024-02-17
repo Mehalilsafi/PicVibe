@@ -55,7 +55,7 @@ export default  function PhotoUploed() {
     }  
     }
     const {setPost}=useContext(PostContext)
-    function handleSubmit(){
+    function handleSubmit(e){
       e.preventDefault()
       setPost(formData)
     }

@@ -1,7 +1,7 @@
 'use server '
 import React from 'react'
 import { createSupabaseServerClient } from "@/utils/supabase/actions";
-
+import { revalidatePath } from 'next/cache';
 
 
    async function getPhotoUrls(photos, user) {
@@ -21,11 +21,14 @@ import { createSupabaseServerClient } from "@/utils/supabase/actions";
   
         const photoObjects = await Promise.all(photoPromises);
         console.log('Generated photo URLs:', photoObjects);
+         revalidatePath('/')
         return photoObjects;
     } catch (error) {
         console.error('Error in getPhotoUrls:', error);
         throw error;
     }
+
+   
   }
 
   export default getPhotoUrls 

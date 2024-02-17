@@ -1,7 +1,8 @@
 'use server'
 import React from 'react'
+import { Revalidate } from 'next/dist/server/lib/revalidate'
 import {createSupabaseServerClient} from '@/utils/supabase/actions'
-export   async function addPost() {
+   async function addPost({title,description,photo}) {
     const supabase = await createSupabaseServerClient()
     const {data ,error}= supabase.from('post').insert([{
 
@@ -15,3 +16,4 @@ export   async function addPost() {
         console.log('New post inserted into Post table:', newPost);
     }
 }
+export default addPost
