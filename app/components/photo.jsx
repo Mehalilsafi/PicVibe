@@ -1,5 +1,5 @@
 
-import React, { useContext } from 'react'
+import React from 'react'
 
 import { createSupabaseServerClient } from "@/utils/supabase/actions";
 import getPhotoUrls from '../actions/getPhotoUrl';
@@ -23,10 +23,10 @@ export default  async function Photo() {
                     key={photo.photoName}
                     src={photo.url}
                     alt={`Photo ${photo.photoName}`}
-                    width={200}
-                    height={200}
+                    width={500}
+                    height={500}
                     photoName={photo.photoName}
-                    isFavorited={photo.isFavorited}
+                    
                 />
                 )) 
             }
