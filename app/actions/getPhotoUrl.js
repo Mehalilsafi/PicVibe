@@ -16,7 +16,7 @@ import { revalidatePath } from 'next/cache';
                 console.error('Error generating signed URL:', error);
                 return null;
             }
-            return { url: data.signedUrl, photoName: photo.name };
+            return { url: data.signedUrl, photoName: photo.name, key:photo.name };
         });
   
         const photoObjects = await Promise.all(photoPromises);

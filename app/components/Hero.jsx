@@ -1,4 +1,4 @@
-'use client '
+
 import React, { useContext } from 'react'
 import DropDown from './DropDown'
 import Image from 'next/image'
@@ -9,17 +9,18 @@ import PostContext from '../context/postContext';
 import getPhotoUrls from '../actions/getPhotoUrl';
 import fetchUserPhotos from '../actions/fetchUserPhotos'
 import addPost from '../actions/addPost'
+import deletePost from '../actions/deletePost'
 
 export default  async function Hero() {
  const post=useContext(PostContext)
- console.log('post log is here '+post)
  const supabase=await createSupabaseServerClient() 
  const {data:{user}}= await supabase.auth.getUser()
  const photos=await fetchUserPhotos(user)
- console.log('phootos frm fetch use function what retutn : '+photos)
  const photoObjects = await getPhotoUrls(photos, user);
  console.log('photot object what return  :'+photoObjects)
-
+ 
+ 
+ const deletePostWithArgument = deletePost.bind(null,user,)
   return (
     <div>
     <DropDown/>
@@ -47,11 +48,12 @@ export default  async function Hero() {
               Some quick 
             </p>  
             <div className='flex items-center justify-between'>
-                           
          
-            <button type="button" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-500 text-white hover:bg-red-600 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+          <form action={deletePostWithArgument}>
+           <button type="button" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-500 text-white hover:bg-red-600 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
               Delete 
               </button>
+          </form>
             </div>
           </div>
         </div>
