@@ -4,7 +4,7 @@ import { createSupabaseServerClient } from "@/utils/supabase/actions";
 import { revalidatePath } from 'next/cache';
 
 
-   async function getPhotoUrls(photos, user) {
+   async function getPhotoUrls(photos, user,postId) {
 
     const supabase=await createSupabaseServerClient() 
     try {
@@ -16,10 +16,15 @@ import { revalidatePath } from 'next/cache';
                 console.error('Error generating signed URL:', error);
                 return null;
             }
-            return { url: data.signedUrl, photoName: photo.name, key:photo.name };
+            return { url: data.signedUrl, photoName: photo.name, key: photo.name,userId:user.id,postId };
         });
+
+
+        console.log(photoPromises+'photoPromises what he console ')
   
         const photoObjects = await Promise.all(photoPromises);
+        console.log(photoObjects+'photoObjects what he console ')
+
         console.log('Generated photo URLs:', photoObjects);
          revalidatePath('/')
         return photoObjects;

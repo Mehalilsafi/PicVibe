@@ -10,17 +10,26 @@ import getPhotoUrls from '../actions/getPhotoUrl';
 import fetchUserPhotos from '../actions/fetchUserPhotos'
 import addPost from '../actions/addPost'
 import deletePost from '../actions/deletePost'
+import PhotoModel from "./PhotoModel"
 
 export default  async function Hero() {
+
+  const [showModal, setShowModal] = useState(false)
+
+  function toggleModal(){
+      setShowModal(!showModal)
+  }
  const post=useContext(PostContext)
  const supabase=await createSupabaseServerClient() 
  const {data:{user}}= await supabase.auth.getUser()
  const photos=await fetchUserPhotos(user)
  const photoObjects = await getPhotoUrls(photos, user);
  console.log('photot object what return  :'+photoObjects)
+ const url =photoObjects.map((photo)=>{
+       return photo.url
+ })
  
- 
- const deletePostWithArgument = deletePost.bind(null,user,)
+ const deletePostWithArgument = deletePost.bind(null,user,photoObjects)
   return (
     <div>
     <DropDown/>
@@ -38,6 +47,7 @@ export default  async function Hero() {
             width={500}
             height={500}
             alt="Picture of the author"
+            onClick={() => setShowModal(true)}
           />
       
           <div className="p-4 md:p-5">
@@ -60,7 +70,9 @@ export default  async function Hero() {
       ))
     }
         </div>
-
+        {
+                showModal && <PhotoModel src={url}  onClose={toggleModal} />
+            }
     </div>
   )
 }
