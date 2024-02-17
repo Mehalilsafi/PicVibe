@@ -5,29 +5,21 @@ import Image from 'next/image'
 import Nature from '@/assets/nature.jpg'
 //import Liked from './liked'
 import { createSupabaseServerClient } from "@/utils/supabase/actions";
-import PostContext from '../context/postContext';
+//import PostContext from '../context/postContext';
 import getPhotoUrls from '../actions/getPhotoUrl';
 import fetchUserPhotos from '../actions/fetchUserPhotos'
-import addPost from '../actions/addPost'
 import deletePost from '../actions/deletePost'
 import PhotoModel from "./PhotoModel"
 
-export default  async function Hero() {
+export default  async function Hero({src,alt, width, height, photoName}) {
 
   const [showModal, setShowModal] = useState(false)
 
   function toggleModal(){
       setShowModal(!showModal)
   }
- const post=useContext(PostContext)
- const supabase=await createSupabaseServerClient() 
- const {data:{user}}= await supabase.auth.getUser()
- const photos=await fetchUserPhotos(user)
- const photoObjects = await getPhotoUrls(photos, user);
- console.log('photot object what return  :'+photoObjects)
- const url =photoObjects.map((photo)=>{
-       return photo.url
- })
+
+
  
  const deletePostWithArgument = deletePost.bind(null,user,photoObjects)
   return (
