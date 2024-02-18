@@ -19,7 +19,7 @@ export default function Hero({src,alt, width, height, photoName}) {
   return (
     <div>
     
-  <div className='grid grid-cols-3 gap-4 mt-5'>
+  <div className=''>
         <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]" >
           <Image
             src={src}
