@@ -15,7 +15,8 @@ export default function Hero({src,alt, width, height, photoName}) {
   useEffect(() => {
     console.log(src + ' photo URL is here');
   }, [src]); // Execute the effect whenever `src` changes
- //const deletePostWithArgument = deletePost.bind(null,user,photoObjects)
+  
+ const deletePostWithArgument = deletePost.bind(null,user,photoObjects)
   return (
     <div>
     
