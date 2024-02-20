@@ -12,10 +12,7 @@ export default function Hero({src,alt, width, height, photoName}) {
   function toggleModal(){
       setShowModal(!showModal)
   }
-  useEffect(() => {
-    console.log(src + ' photo URL is here');
-  }, [src]); // Execute the effect whenever `src` changes
-  
+ 
  const deletePostWithArgument = deletePost.bind(null,user,photoObjects)
   return (
     <div>
@@ -39,7 +36,7 @@ export default function Hero({src,alt, width, height, photoName}) {
             </p>  
             <div className='flex items-center justify-between'>
             <Liked/>
-          <form action=''>
+          <form action={deletePostWithArgument}>
            <button type="button" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-500 text-white hover:bg-red-600 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
               Delete 
               </button>
