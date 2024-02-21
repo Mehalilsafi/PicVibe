@@ -35,6 +35,8 @@ export default  async function Photo() {
                     width={500}
                     height={500}
                     photoName={photo.photoName}
+                    user={user}
+                    photoObjects={photoObjects}
                     
                 />
                 )) 

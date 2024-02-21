@@ -5,7 +5,8 @@ import Image from 'next/image'
 import Liked from './Liked'
 import deletePost from '../actions/deletePost'
 import PhotoModel from "./PhotoModel"
-export default function Hero({src,alt, width, height, photoName}) {
+                
+ export default function Hero({src,alt, width, height, photoName,user,photoObjects}) {
 
   const [showModal, setShowModal] = useState(false)
 
