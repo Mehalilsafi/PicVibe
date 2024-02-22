@@ -1,9 +1,10 @@
 'use server'
 import {createSupabaseServerClient} from '@/utils/supabase/actions'
-async function deletePost({user,url}) {
+async function deletePost(formData) {
+   
        const supabase =await createSupabaseServerClient()
 
-       filePath=`user_uploads/${user.id}/${url}`
+       filePath=`user_uploads/${user.id}/`
        try {
      
         const { error } = await supabase.storage.from('photos').remove([filePath]);
