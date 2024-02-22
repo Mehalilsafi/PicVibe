@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-export default function PhotoModal({src, onClose}){
+export default function PhotoModal({src, onClose,alt}){
     if (!src) return null;
 
     return (

@@ -13,8 +13,12 @@ import PhotoModel from "./PhotoModel"
   function toggleModal(){
       setShowModal(!showModal)
   }
+  const [{ url }] = photoObjects;
+  console.log(url);
+
+ const deletePostWithArgument = deletePost.bind(null,user,url)
+ console.log(photoObjects)
  
- const deletePostWithArgument = deletePost.bind(null,user,photoObjects)
   return (
     <div>
     
@@ -49,7 +53,11 @@ import PhotoModel from "./PhotoModel"
     
         </div>
         {
-                showModal && <PhotoModel src={src}  onClose={toggleModal} />
+                showModal && <PhotoModel 
+                src={src}
+                onClose={toggleModal}
+                alt={alt}
+                 />
             }
     </div>
   )
