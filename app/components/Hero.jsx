@@ -13,11 +13,10 @@ import PhotoModel from "./PhotoModel"
   function toggleModal(){
       setShowModal(!showModal)
   }
-  const [{ url }] = photoObjects;
-  console.log(url);
+ 
 
- const deletePostWithArgument = deletePost.bind(null,user,url)
- console.log(photoObjects)
+
+ 
  
   return (
     <div>
@@ -41,7 +40,7 @@ import PhotoModel from "./PhotoModel"
             </p>  
             <div className='flex items-center justify-between'>
             <Liked/>
-          <form action={deletePostWithArgument}>
+          <form action={deletePost}> 
             <input type="hidden" name='photopath' value={src} />
            <button type="button" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-500 text-white hover:bg-red-600 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
               Delete 
