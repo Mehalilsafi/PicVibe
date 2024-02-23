@@ -19,7 +19,7 @@ async function deletePost(formData) {
        let filePath = extractFilePath(src)
        const supabase =await createSupabaseServerClient()
  
-       try {
+       try {  
      
         const { error } = await supabase.storage.from('photos').remove([filePath]);
         if (error) {
