@@ -4,7 +4,6 @@ import Image from "next/image";
 
 export default function PhotoModal({src, onClose,alt}){
     if (!src) return null;
-
     return (
         <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
             <div className="bg-gray-800 p-4 rounded-lg relative border border-gray-600">

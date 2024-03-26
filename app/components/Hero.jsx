@@ -12,12 +12,7 @@ import PhotoModel from "./PhotoModel"
 
   function toggleModal(){
       setShowModal(!showModal)
-  }
- 
-
-
- 
- 
+  } 
   return (
     <div>
     
